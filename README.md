@@ -35,13 +35,13 @@ Router for PHP. Simple, lightweight and convenient.
     * for the web root
 
       ```
-      $router = new Router();
+      $router = new \Delight\Router\Router();
       ```
 
     * for any subdirectory
 
       ```
-      $router = new Router('/my/base/path');
+      $router = new \Delight\Router\Router('/my/base/path');
       ```
 
  4. Add some routes and map them to callback functions

@@ -16,6 +16,8 @@
  * limitations under the License.
  */
 
+namespace Delight\Router;
+
 /** Router for PHP. Simple, lightweight and convenient. */
 class Router {
 
