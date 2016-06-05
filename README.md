@@ -2,6 +2,10 @@
 
 Minimal router for PHP (fast + single file)
 
+## Requirements
+
+ * PHP 5.3+
+
 ## Usage
 
  1. Enable URL rewriting on your web server
@@ -63,10 +67,6 @@ Minimal router for PHP (fast + single file)
     ```
     $router->run();
     ```
-
-## Dependencies
-
- * PHP 5.3+
 
 ## Contributing
 
