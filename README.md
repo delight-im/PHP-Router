@@ -21,19 +21,19 @@ Minimal router for PHP (fast + single file)
  2. Include the library
 
     ```
-    require_once(__DIR__.'/libs/PhpRouter/PhpRouter.php');
+    require_once(__DIR__.'/libs/PhpRouter/Router.php');
     ```
 
- 3. Create a new `PhpRouter` instance
+ 3. Create a new `Router` instance
     * for the web root
 
       ```
-      $router = new PhpRouter();
+      $router = new Router();
       ```
     * for any subdirectory
 
       ```
-      $router = new PhpRouter('/my/base/path');
+      $router = new Router('/my/base/path');
       ```
 
  4. Add some routes and map them to callback functions

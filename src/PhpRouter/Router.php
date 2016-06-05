@@ -15,7 +15,7 @@
  * @see <a href="https://github.com/delight-im/PHP-Router">PHP-Router on GitHub</a>
  * @see <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>
  */
-class PhpRouter {
+class Router {
 
     const REGEX_PATH_PARAMS = '/(?<=\/):([^\/]+)(?=\/|$)/';
 	const REGEX_PATH_SEGMENT = '([^\/]+)';
@@ -26,7 +26,7 @@ class PhpRouter {
 	protected $routes;
 
     /**
-     * Creates a new `PhpRouter` instance
+     * Constructor
      *
      * @param string $basePath the base path to use for routing (optional)
      */

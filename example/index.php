@@ -2,9 +2,9 @@
 
 header('Content-type: text/html; charset=utf-8');
 
-require_once(__DIR__.'/../src/PhpRouter/PhpRouter.php');
+require_once(__DIR__.'/../src/PhpRouter/Router.php');
 
-$router = new PhpRouter('/example');
+$router = new Router('/example');
 
 $router->get('/', function () {
 	echo '<h1>Welcome</h1>';
