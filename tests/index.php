@@ -20,7 +20,7 @@ header('Content-type: text/html; charset=utf-8');
 
 require_once(__DIR__.'/../src/Router.php');
 
-$router = new Router('/example');
+$router = new Router('/tests');
 
 $router->get('/', function () {
 	echo '<h1>Welcome</h1>';
