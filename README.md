@@ -46,7 +46,7 @@ Router for PHP. Simple, lightweight and convenient.
 
  4. Add some routes and map them to callback functions
 
-    * simple route
+    * static route
 
       ```
       $router->get('/', function () {
@@ -54,13 +54,15 @@ Router for PHP. Simple, lightweight and convenient.
       }
       ```
 
-    * route with parameters
+    * route with dynamic parameters
 
       ```
       $router->get('/users/:id/photo', function ($id) {
           // get the photo for user `$id`
       }
       ```
+
+      The values of parameters matched in the URL can be captured as arguments in the callback.
 
  5. Execute the router
 

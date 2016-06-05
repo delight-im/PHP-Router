@@ -16,21 +16,7 @@
  * limitations under the License.
  */
 
-/**
- * Minimal router for PHP (fast + single file)
- *
- * Routes may include dynamic parameters, e.g. `/users/:id`
- *
- * Values for matched parameters can be captured with callback parameters
- *
- * Example:
- *
- * $router->get('/user/:id', function ($id) { ... });
- *
- * @author delight.im <info@delight.im>
- * @see <a href="https://github.com/delight-im/PHP-Router">PHP-Router on GitHub</a>
- * @see <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>
- */
+/** Router for PHP. Simple, lightweight and convenient. */
 class Router {
 
 	const REGEX_PATH_PARAMS = '/(?<=\/):([^\/]+)(?=\/|$)/';
