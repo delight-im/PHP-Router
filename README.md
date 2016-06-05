@@ -4,7 +4,7 @@ Router for PHP. Simple, lightweight and convenient.
 
 ## Requirements
 
- * PHP 5.3+
+ * PHP 5.3.0+
 
 ## Usage
 
