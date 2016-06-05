@@ -14,7 +14,7 @@ $router->get('/', function () {
 $router->get('/user/:id/:name', function ($id, $name) {
 	echo '<h1>Profile: '.htmlspecialchars($name).'</h1>';
 	echo '<p>My user ID is '.intval($id).'</p>';
-    // you may use `$_GET` in addition to the callback arguments
+	// you may use `$_GET` in addition to the callback arguments
 });
 $router->post('/sign_up', function () {
 	// create a new account with values from `$_POST`

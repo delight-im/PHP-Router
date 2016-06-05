@@ -5,18 +5,20 @@ Minimal router for PHP (fast + single file)
 ## Usage
 
  1. Enable URL rewriting on your web server
+
     * Apache (in `.htaccess` or `httpd.conf`)
 
-	  ```
+      ```
       RewriteEngine On
       RewriteCond %{REQUEST_FILENAME} !-f
       RewriteRule . index.php [L]
       ```
-	* Nginx (in `nginx.conf`)
+
+    * Nginx (in `nginx.conf`)
 
       ```
-	  try_files $uri /index.php;
-	  ```
+      try_files $uri /index.php;
+      ```
 
  2. Include the library
 
@@ -25,11 +27,13 @@ Minimal router for PHP (fast + single file)
     ```
 
  3. Create a new `Router` instance
+
     * for the web root
 
       ```
       $router = new Router();
       ```
+
     * for any subdirectory
 
       ```
@@ -37,6 +41,7 @@ Minimal router for PHP (fast + single file)
       ```
 
  4. Add some routes and map them to callback functions
+
     * simple route
 
       ```

@@ -17,7 +17,7 @@
  */
 class Router {
 
-    const REGEX_PATH_PARAMS = '/(?<=\/):([^\/]+)(?=\/|$)/';
+	const REGEX_PATH_PARAMS = '/(?<=\/):([^\/]+)(?=\/|$)/';
 	const REGEX_PATH_SEGMENT = '([^\/]+)';
 	const REGEX_DELIMITER = '/';
 
@@ -25,113 +25,113 @@ class Router {
 	protected $requestUri;
 	protected $routes;
 
-    /**
-     * Constructor
-     *
-     * @param string $basePath the base path to use for routing (optional)
-     */
-    public function __construct($basePath = '') {
+	/**
+	 * Constructor
+	 *
+	 * @param string $basePath the base path to use for routing (optional)
+	 */
+	public function __construct($basePath = '') {
 		$this->basePath = static::validateBasePath($basePath);
 		$this->requestUri = static::parseRequestUri();
 		$this->routes = array();
 	}
 
-    /**
-     * Adds a new route for the HTTP method GET
-     *
-     * @param string $path the path to map, e.g. `/users/jane`
-     * @param callable|null $callback the callback to execute, e.g. an anonymous function
-     */
-    public function get($path = '/', $callback = null) {
+	/**
+	 * Adds a new route for the HTTP method GET
+	 *
+	 * @param string $path the path to map, e.g. `/users/jane`
+	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 */
+	public function get($path = '/', $callback = null) {
 		$this->addRoute('get', $path, $callback);
 	}
 
-    /**
-     * Adds a new route for the HTTP method POST
-     *
-     * @param string $path the path to map, e.g. `/users/jane`
-     * @param callable|null $callback the callback to execute, e.g. an anonymous function
-     */
+	/**
+	 * Adds a new route for the HTTP method POST
+	 *
+	 * @param string $path the path to map, e.g. `/users/jane`
+	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 */
 	public function post($path = '/', $callback = null) {
 		$this->addRoute('post', $path, $callback);
 	}
 
-    /**
-     * Adds a new route for the HTTP method PUT
-     *
-     * @param string $path the path to map, e.g. `/users/jane`
-     * @param callable|null $callback the callback to execute, e.g. an anonymous function
-     */
+	/**
+	 * Adds a new route for the HTTP method PUT
+	 *
+	 * @param string $path the path to map, e.g. `/users/jane`
+	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 */
 	public function put($path = '/', $callback = null) {
 		$this->addRoute('put', $path, $callback);
 	}
 
-    /**
-     * Adds a new route for the HTTP method PATCH
-     *
-     * @param string $path the path to map, e.g. `/users/jane`
-     * @param callable|null $callback the callback to execute, e.g. an anonymous function
-     */
+	/**
+	 * Adds a new route for the HTTP method PATCH
+	 *
+	 * @param string $path the path to map, e.g. `/users/jane`
+	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 */
 	public function patch($path = '/', $callback = null) {
 		$this->addRoute('patch', $path, $callback);
 	}
 
-    /**
-     * Adds a new route for the HTTP method DELETE
-     *
-     * @param string $path the path to map, e.g. `/users/jane`
-     * @param callable|null $callback the callback to execute, e.g. an anonymous function
-     */
+	/**
+	 * Adds a new route for the HTTP method DELETE
+	 *
+	 * @param string $path the path to map, e.g. `/users/jane`
+	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 */
 	public function delete($path = '/', $callback = null) {
 		$this->addRoute('delete', $path, $callback);
 	}
 
-    /**
-     * Adds a new route for the HTTP method HEAD
-     *
-     * @param string $path the path to map, e.g. `/users/jane`
-     * @param callable|null $callback the callback to execute, e.g. an anonymous function
-     */
+	/**
+	 * Adds a new route for the HTTP method HEAD
+	 *
+	 * @param string $path the path to map, e.g. `/users/jane`
+	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 */
 	public function head($path = '/', $callback = null) {
 		$this->addRoute('head', $path, $callback);
 	}
 
-    /**
-     * Adds a new route for the HTTP method TRACE
-     *
-     * @param string $path the path to map, e.g. `/users/jane`
-     * @param callable|null $callback the callback to execute, e.g. an anonymous function
-     */
+	/**
+	 * Adds a new route for the HTTP method TRACE
+	 *
+	 * @param string $path the path to map, e.g. `/users/jane`
+	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 */
 	public function trace($path = '/', $callback = null) {
 		$this->addRoute('trace', $path, $callback);
 	}
 
-    /**
-     * Adds a new route for the HTTP method OPTIONS
-     *
-     * @param string $path the path to map, e.g. `/users/jane`
-     * @param callable|null $callback the callback to execute, e.g. an anonymous function
-     */
+	/**
+	 * Adds a new route for the HTTP method OPTIONS
+	 *
+	 * @param string $path the path to map, e.g. `/users/jane`
+	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 */
 	public function options($path = '/', $callback = null) {
 		$this->addRoute('options', $path, $callback);
 	}
 
-    /**
-     * Adds a new route for the HTTP method CONNECT
-     *
-     * @param string $path the path to map, e.g. `/users/jane`
-     * @param callable|null $callback the callback to execute, e.g. an anonymous function
-     */
+	/**
+	 * Adds a new route for the HTTP method CONNECT
+	 *
+	 * @param string $path the path to map, e.g. `/users/jane`
+	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 */
 	public function connect($path = '/', $callback = null) {
 		$this->addRoute('connect', $path, $callback);
 	}
 
-    /**
-     * Matches the request path against the specified routes and executes the callback (if found)
-     *
-     * This method must *always* be called at the end of the routing definitions
-     */
-    public function run() {
+	/**
+	 * Matches the request path against the specified routes and executes the callback (if found)
+	 *
+	 * This method must *always* be called at the end of the routing definitions
+	 */
+	public function run() {
 		$requestMethod = strtolower($_SERVER['REQUEST_METHOD']);
 
 		// if there are no routes for the current request method
