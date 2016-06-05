@@ -1,6 +1,6 @@
 # PHP-Router
 
-Minimal router for PHP (fast + single file)
+Router for PHP. Simple, lightweight and convenient.
 
 ## Requirements
 
