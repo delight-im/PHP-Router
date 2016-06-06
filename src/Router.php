@@ -48,9 +48,10 @@ final class Router {
 	 *
 	 * @param string $path the path to map, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @return bool whether the route matched the current request
 	 */
 	public function get($path = '/', $callback = null) {
-		$this->addRoute('get', $path, $callback);
+		return $this->addRoute('get', $path, $callback);
 	}
 
 	/**
@@ -58,9 +59,10 @@ final class Router {
 	 *
 	 * @param string $path the path to map, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @return bool whether the route matched the current request
 	 */
 	public function post($path = '/', $callback = null) {
-		$this->addRoute('post', $path, $callback);
+		return $this->addRoute('post', $path, $callback);
 	}
 
 	/**
@@ -68,9 +70,10 @@ final class Router {
 	 *
 	 * @param string $path the path to map, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @return bool whether the route matched the current request
 	 */
 	public function put($path = '/', $callback = null) {
-		$this->addRoute('put', $path, $callback);
+		return $this->addRoute('put', $path, $callback);
 	}
 
 	/**
@@ -78,9 +81,10 @@ final class Router {
 	 *
 	 * @param string $path the path to map, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @return bool whether the route matched the current request
 	 */
 	public function patch($path = '/', $callback = null) {
-		$this->addRoute('patch', $path, $callback);
+		return $this->addRoute('patch', $path, $callback);
 	}
 
 	/**
@@ -88,9 +92,10 @@ final class Router {
 	 *
 	 * @param string $path the path to map, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @return bool whether the route matched the current request
 	 */
 	public function delete($path = '/', $callback = null) {
-		$this->addRoute('delete', $path, $callback);
+		return $this->addRoute('delete', $path, $callback);
 	}
 
 	/**
@@ -98,9 +103,10 @@ final class Router {
 	 *
 	 * @param string $path the path to map, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @return bool whether the route matched the current request
 	 */
 	public function head($path = '/', $callback = null) {
-		$this->addRoute('head', $path, $callback);
+		return $this->addRoute('head', $path, $callback);
 	}
 
 	/**
@@ -108,9 +114,10 @@ final class Router {
 	 *
 	 * @param string $path the path to map, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @return bool whether the route matched the current request
 	 */
 	public function trace($path = '/', $callback = null) {
-		$this->addRoute('trace', $path, $callback);
+		return $this->addRoute('trace', $path, $callback);
 	}
 
 	/**
@@ -118,9 +125,10 @@ final class Router {
 	 *
 	 * @param string $path the path to map, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @return bool whether the route matched the current request
 	 */
 	public function options($path = '/', $callback = null) {
-		$this->addRoute('options', $path, $callback);
+		return $this->addRoute('options', $path, $callback);
 	}
 
 	/**
@@ -128,9 +136,10 @@ final class Router {
 	 *
 	 * @param string $path the path to map, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @return bool whether the route matched the current request
 	 */
 	public function connect($path = '/', $callback = null) {
-		$this->addRoute('connect', $path, $callback);
+		return $this->addRoute('connect', $path, $callback);
 	}
 
 	private function matchRoute($expectedRoute) {
