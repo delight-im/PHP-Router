@@ -25,17 +25,17 @@ class Router {
 	const REGEX_PATH_SEGMENT = '([^\/]+)';
 	const REGEX_DELIMITER = '/';
 
-	protected $basePath;
+	protected $rootPath;
 	protected $requestPath;
 	protected $routes;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $basePath the base path to use for routing (optional)
+	 * @param string $rootPath the base path to use for routing (optional)
 	 */
-	public function __construct($basePath = '') {
-		$this->basePath = static::validateBasePath($basePath);
+	public function __construct($rootPath = '') {
+		$this->rootPath = static::validateRootPath($rootPath);
 		$this->requestPath = static::parseRequestPath();
 		$this->routes = array();
 	}
@@ -198,7 +198,7 @@ class Router {
 		self::processUriParams($path, $params);
 
 		// escape the base path for regex and prepend it to the route
-		return static::REGEX_DELIMITER . '^' . static::regexEscape($this->basePath) . $path . '$' . static::REGEX_DELIMITER;
+		return static::REGEX_DELIMITER . '^' . static::regexEscape($this->rootPath) . $path . '$' . static::REGEX_DELIMITER;
 	}
 
 	protected static function processUriParams(&$path, &$params) {
@@ -239,20 +239,20 @@ class Router {
 		}
 	}
 
-	protected static function validateBasePath($basePath) {
+	protected static function validateRootPath($rootPath) {
 		// if the base path does not start with a slash
-		if (substr($basePath, 0, 1) !== '/') {
+		if (substr($rootPath, 0, 1) !== '/') {
 			// prepend a slash
-			$basePath = '/'.$basePath;
+			$rootPath = '/'.$rootPath;
 		}
 
 		// if the base path ends with a slash
-		if (substr($basePath, -1) === '/') {
+		if (substr($rootPath, -1) === '/') {
 			// cut off the trailing slash
-			return substr($basePath, 0, -1);
+			return substr($rootPath, 0, -1);
 		}
 
-		return $basePath;
+		return $rootPath;
 	}
 
 	protected static function parseRequestPath() {
