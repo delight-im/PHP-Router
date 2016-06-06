@@ -44,7 +44,7 @@ final class Router {
 	}
 
 	/**
-	 * Adds a new route for the HTTP method GET
+	 * Adds a new route for the HTTP request method `GET` and executes the specified callback if the route matches
 	 *
 	 * @param string $path the path to map, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
@@ -54,7 +54,7 @@ final class Router {
 	}
 
 	/**
-	 * Adds a new route for the HTTP method POST
+	 * Adds a new route for the HTTP request method `POST` and executes the specified callback if the route matches
 	 *
 	 * @param string $path the path to map, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
@@ -64,7 +64,7 @@ final class Router {
 	}
 
 	/**
-	 * Adds a new route for the HTTP method PUT
+	 * Adds a new route for the HTTP request method `PUT` and executes the specified callback if the route matches
 	 *
 	 * @param string $path the path to map, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
@@ -74,7 +74,7 @@ final class Router {
 	}
 
 	/**
-	 * Adds a new route for the HTTP method PATCH
+	 * Adds a new route for the HTTP request method `PATCH` and executes the specified callback if the route matches
 	 *
 	 * @param string $path the path to map, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
@@ -84,7 +84,7 @@ final class Router {
 	}
 
 	/**
-	 * Adds a new route for the HTTP method DELETE
+	 * Adds a new route for the HTTP request method `DELETE` and executes the specified callback if the route matches
 	 *
 	 * @param string $path the path to map, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
@@ -94,7 +94,7 @@ final class Router {
 	}
 
 	/**
-	 * Adds a new route for the HTTP method HEAD
+	 * Adds a new route for the HTTP request method `HEAD` and executes the specified callback if the route matches
 	 *
 	 * @param string $path the path to map, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
@@ -104,7 +104,7 @@ final class Router {
 	}
 
 	/**
-	 * Adds a new route for the HTTP method TRACE
+	 * Adds a new route for the HTTP request method `TRACE` and executes the specified callback if the route matches
 	 *
 	 * @param string $path the path to map, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
@@ -114,7 +114,7 @@ final class Router {
 	}
 
 	/**
-	 * Adds a new route for the HTTP method OPTIONS
+	 * Adds a new route for the HTTP request method `OPTIONS` and executes the specified callback if the route matches
 	 *
 	 * @param string $path the path to map, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
@@ -124,7 +124,7 @@ final class Router {
 	}
 
 	/**
-	 * Adds a new route for the HTTP method CONNECT
+	 * Adds a new route for the HTTP request method `CONNECT` and executes the specified callback if the route matches
 	 *
 	 * @param string $path the path to map, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
