@@ -18,6 +18,8 @@
 
 namespace Delight\Router;
 
+require __DIR__.'/Path.php';
+
 /** Router for PHP. Simple, lightweight and convenient. */
 class Router {
 
@@ -35,7 +37,7 @@ class Router {
 	 * @param string $rootPath the base path to use for routing (optional)
 	 */
 	public function __construct($rootPath = '') {
-		$this->rootPath = static::normalizeRootPath($rootPath);
+		$this->rootPath = (string) (new Path($rootPath))->normalize()->removeTrailingSlashes();
 		$this->requestPath = static::parseRequestPath();
 		$this->routes = array();
 	}
@@ -237,22 +239,6 @@ class Router {
 			// just escape the path for literal usage in regex
 			$path = static::regexEscape($path);
 		}
-	}
-
-	protected static function normalizeRootPath($rootPath) {
-		// remove whitespace from the beginning
-		$rootPath = ltrim($rootPath);
-
-		// ensure that there is exactly one forward slash at the beginning
-		$rootPath = '/'.ltrim($rootPath, '/');
-
-		// remove whitespace from the end
-		$rootPath = rtrim($rootPath);
-
-		// ensure that there is no forward slash at the end
-		$rootPath = rtrim($rootPath, '/');
-
-		return $rootPath;
 	}
 
 	protected static function parseRequestPath() {
