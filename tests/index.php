@@ -16,6 +16,9 @@
  * limitations under the License.
  */
 
+error_reporting(E_ALL);
+ini_set('display_errors', 'stdout');
+
 header('Content-type: text/html; charset=utf-8');
 
 require __DIR__.'/../src/Router.php';
