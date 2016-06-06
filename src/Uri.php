@@ -39,10 +39,10 @@ final class Uri {
 	 */
 	public function removeQuery() {
 		$this->str = strtok($this->str, '?');
-		
+
 		return $this;
 	}
-	
+
 	public function __toString() {
 		return $this->str;
 	}
