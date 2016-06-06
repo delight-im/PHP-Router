@@ -26,7 +26,7 @@ class Router {
 	const REGEX_DELIMITER = '/';
 
 	protected $basePath;
-	protected $requestUri;
+	protected $requestPath;
 	protected $routes;
 
 	/**
@@ -36,7 +36,7 @@ class Router {
 	 */
 	public function __construct($basePath = '') {
 		$this->basePath = static::validateBasePath($basePath);
-		$this->requestUri = static::parseRequestUri();
+		$this->requestPath = static::parseRequestPath();
 		$this->routes = array();
 	}
 
@@ -167,7 +167,7 @@ class Router {
 		$routeRegex = $this->createRouteRegex($path, $params);
 
 		// if the route regex matches the current request URI
-		if (preg_match($routeRegex, $this->requestUri, $matches)) {
+		if (preg_match($routeRegex, $this->requestPath, $matches)) {
 			if (count($matches) > 1) {
 				// remove the first match (which is the full route match)
 				array_shift($matches);
@@ -255,7 +255,7 @@ class Router {
 		return $basePath;
 	}
 
-	protected static function parseRequestUri() {
+	protected static function parseRequestPath() {
 		$uri = $_SERVER['REQUEST_URI'];
 
 		// get the position of the query string
