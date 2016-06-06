@@ -26,7 +26,7 @@ final class Path {
 	/**
 	 * Constructor
 	 *
-	 * @param string $str the URI as a string
+	 * @param string $str the path as a string
 	 */
 	public function __construct($str) {
 		$this->str = $str;
