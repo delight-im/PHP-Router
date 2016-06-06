@@ -64,12 +64,6 @@ Router for PHP. Simple, lightweight and convenient.
 
       The values of parameters matched in the URL can be captured as arguments in the callback.
 
- 5. Execute the router
-
-    ```
-    $router->run();
-    ```
-
 ## Contributing
 
 All contributions are welcome! If you wish to contribute, please create an issue first so that your feature, problem or question can be discussed.

@@ -43,5 +43,3 @@ $router->post('/sign_up', function () {
 $router->put('/articles/5', function () {
 	// do something
 });
-
-$router->run();
