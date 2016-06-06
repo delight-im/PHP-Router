@@ -35,7 +35,7 @@ class Router {
 	 * @param string $rootPath the base path to use for routing (optional)
 	 */
 	public function __construct($rootPath = '') {
-		$this->rootPath = static::validateRootPath($rootPath);
+		$this->rootPath = static::normalizeRootPath($rootPath);
 		$this->requestPath = static::parseRequestPath();
 		$this->routes = array();
 	}
@@ -239,7 +239,7 @@ class Router {
 		}
 	}
 
-	protected static function validateRootPath($rootPath) {
+	protected static function normalizeRootPath($rootPath) {
 		// if the base path does not start with a slash
 		if (substr($rootPath, 0, 1) !== '/') {
 			// prepend a slash
