@@ -29,7 +29,7 @@ class Router {
 	const REGEX_DELIMITER = '/';
 
 	protected $rootPath;
-	protected $requestPath;
+	protected $route;
 	protected $requestMethod;
 
 	/**
@@ -39,7 +39,7 @@ class Router {
 	 */
 	public function __construct($rootPath = '') {
 		$this->rootPath = (string) (new Path($rootPath))->normalize()->removeTrailingSlashes();
-		$this->requestPath = urldecode((string) (new Uri($_SERVER['REQUEST_URI']))->removeQuery());
+		$this->route = urldecode((string) (new Uri($_SERVER['REQUEST_URI']))->removeQuery());
 		$this->requestMethod = strtolower($_SERVER['REQUEST_METHOD']);
 	}
 
@@ -133,14 +133,14 @@ class Router {
 		$this->addRoute('connect', $path, $callback);
 	}
 
-	private function matchRoute($route) {
+	private function matchRoute($expectedRoute) {
 		$params = array();
 
 		// create the regex that matches paths against the route
-		$routeRegex = $this->createRouteRegex($route, $params);
+		$expectedRouteRegex = $this->createRouteRegex($expectedRoute, $params);
 
 		// if the route regex matches the current request path
-		if (preg_match($routeRegex, $this->requestPath, $matches)) {
+		if (preg_match($expectedRouteRegex, $this->route, $matches)) {
 			if (count($matches) > 1) {
 				// remove the first match (which is the full route match)
 				array_shift($matches);
@@ -160,14 +160,14 @@ class Router {
 
 	private function addRoute($expectedRequestMethod, $expectedRoute, $callback) {
 		if ($expectedRequestMethod === $this->requestMethod) {
-			$routeArgs = $this->matchRoute($expectedRoute);
+			$matchedArgs = $this->matchRoute($expectedRoute);
 
 			// if the route matches the current request
-			if ($routeArgs !== false) {
+			if ($matchedArgs !== false) {
 				// if a callback has been set
 				if (isset($callback) && is_callable($callback)) {
 					// execute the callback
-					call_user_func_array($callback, $routeArgs);
+					call_user_func_array($callback, $matchedArgs);
 				}
 
 				// the route matches the current request
@@ -179,12 +179,12 @@ class Router {
 		return false;
 	}
 
-	private function createRouteRegex($route, &$params) {
+	private function createRouteRegex($expectedRoute, &$params) {
 		// extract the parameters from the route (if any) and make the route a regex
-		self::processUriParams($route, $params);
+		self::processUriParams($expectedRoute, $params);
 
 		// escape the base path for regex and prepend it to the route
-		return static::REGEX_DELIMITER . '^' . static::regexEscape($this->rootPath) . $route . '$' . static::REGEX_DELIMITER;
+		return static::REGEX_DELIMITER . '^' . static::regexEscape($this->rootPath) . $expectedRoute . '$' . static::REGEX_DELIMITER;
 	}
 
 	protected static function processUriParams(&$path, &$params) {
