@@ -240,17 +240,17 @@ class Router {
 	}
 
 	protected static function normalizeRootPath($rootPath) {
-		// if the base path does not start with a slash
-		if (substr($rootPath, 0, 1) !== '/') {
-			// prepend a slash
-			$rootPath = '/'.$rootPath;
-		}
+		// remove whitespace from the beginning
+		$rootPath = ltrim($rootPath);
 
-		// if the base path ends with a slash
-		if (substr($rootPath, -1) === '/') {
-			// cut off the trailing slash
-			return substr($rootPath, 0, -1);
-		}
+		// ensure that there is exactly one forward slash at the beginning
+		$rootPath = '/'.ltrim($rootPath, '/');
+
+		// remove whitespace from the end
+		$rootPath = rtrim($rootPath);
+
+		// ensure that there is no forward slash at the end
+		$rootPath = rtrim($rootPath, '/');
 
 		return $rootPath;
 	}
