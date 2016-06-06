@@ -142,6 +142,33 @@ final class Router {
 		return $this->addRoute('connect', $route, $callback);
 	}
 
+	/**
+	 * Returns the root path that this router is working in
+	 *
+	 * @return string the path
+	 */
+	public function getRootPath() {
+		return $this->rootPath;
+	}
+
+	/**
+	 * Returns the route from the current request
+	 *
+	 * @return string the route
+	 */
+	public function getRoute() {
+		return $this->route;
+	}
+
+	/**
+	 * Returns the request method from the current request
+	 *
+	 * @return string the method name
+	 */
+	public function getRequestMethod() {
+		return $this->requestMethod;
+	}
+
 	private function matchRoute($expectedRoute) {
 		$params = array();
 
