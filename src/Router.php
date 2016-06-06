@@ -22,15 +22,15 @@ require __DIR__.'/Path.php';
 require __DIR__.'/Uri.php';
 
 /** Router for PHP. Simple, lightweight and convenient. */
-class Router {
+final class Router {
 
 	const REGEX_PATH_PARAMS = '/(?<=\/):([^\/]+)(?=\/|$)/';
 	const REGEX_PATH_SEGMENT = '([^\/]+)';
 	const REGEX_DELIMITER = '/';
 
-	protected $rootPath;
-	protected $route;
-	protected $requestMethod;
+	private $rootPath;
+	private $route;
+	private $requestMethod;
 
 	/**
 	 * Constructor
@@ -187,7 +187,7 @@ class Router {
 		return static::REGEX_DELIMITER . '^' . static::regexEscape($this->rootPath) . $expectedRoute . '$' . static::REGEX_DELIMITER;
 	}
 
-	protected static function processUriParams(&$path, &$params) {
+	private static function processUriParams(&$path, &$params) {
 		// if the route path contains parameters like `:key`
 		if (preg_match_all(static::REGEX_PATH_PARAMS, $path, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE)) {
 			$previousMatchEnd = 0;
@@ -225,7 +225,7 @@ class Router {
 		}
 	}
 
-	protected static function regexEscape($str) {
+	private static function regexEscape($str) {
 		return preg_quote($str, static::REGEX_DELIMITER);
 	}
 
