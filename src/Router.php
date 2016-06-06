@@ -19,6 +19,7 @@
 namespace Delight\Router;
 
 require __DIR__.'/Path.php';
+require __DIR__.'/Uri.php';
 
 /** Router for PHP. Simple, lightweight and convenient. */
 class Router {
@@ -38,7 +39,7 @@ class Router {
 	 */
 	public function __construct($rootPath = '') {
 		$this->rootPath = (string) (new Path($rootPath))->normalize()->removeTrailingSlashes();
-		$this->requestPath = static::parseRequestPath();
+		$this->requestPath = (string) (new Uri($_SERVER['REQUEST_URI']))->removeQuery();
 		$this->routes = array();
 	}
 
@@ -239,21 +240,6 @@ class Router {
 			// just escape the path for literal usage in regex
 			$path = static::regexEscape($path);
 		}
-	}
-
-	protected static function parseRequestPath() {
-		$uri = $_SERVER['REQUEST_URI'];
-
-		// get the position of the query string
-		$queryStringStart = strpos($uri, '?');
-
-		// if the URI contains a query string
-		if ($queryStringStart !== false) {
-			// cut off the query string
-			$uri = substr($uri, 0, $queryStringStart);
-		}
-
-		return $uri;
 	}
 
 	protected static function regexEscape($str) {
