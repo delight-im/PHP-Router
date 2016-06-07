@@ -35,7 +35,7 @@ final class Path {
 	/**
 	 * Normalizes the path
 	 *
-	 * @return static $this this instance for chaining
+	 * @return static this instance for chaining
 	 */
 	public function normalize() {
 		// remove whitespace from the beginning
@@ -54,7 +54,7 @@ final class Path {
 	/**
 	 * Removes any trailing slashes
 	 *
-	 * @return static $this this instance for chaining
+	 * @return static this instance for chaining
 	 */
 	public function removeTrailingSlashes() {
 		// ensure that there is no forward slash at the end

@@ -35,7 +35,7 @@ final class Uri {
 	/**
 	 * Removes the query component from this string
 	 *
-	 * @return static $this this instance for chaining
+	 * @return static this instance for chaining
 	 */
 	public function removeQuery() {
 		$this->str = strtok($this->str, '?');
