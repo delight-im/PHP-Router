@@ -21,7 +21,7 @@ ini_set('display_errors', 'stdout');
 
 header('Content-type: text/html; charset=utf-8');
 
-require __DIR__.'/../src/Router.php';
+require __DIR__.'/../vendor/autoload.php';
 
 $router = new \Delight\Router\Router('/PHP-Router/tests');
 
