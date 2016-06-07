@@ -6,6 +6,23 @@ Router for PHP. Simple, lightweight and convenient.
 
  * PHP 5.3.0+
 
+## Installation
+
+ * Install via [Composer](https://getcomposer.org/) (recommended)
+
+   `$ composer require delight-im/router`
+
+   Include the Composer autoloader:
+
+   `require __DIR__.'/vendor/autoload.php';`
+
+ * or
+
+ * Install manually
+
+   * Copy the contents of the [`src`](src) directory to a subfolder of your project
+   * Include the files in your code via `require` or `require_once`
+
 ## Usage
 
  1. Enable URL rewriting on your web server
@@ -24,13 +41,7 @@ Router for PHP. Simple, lightweight and convenient.
       try_files $uri /index.php;
       ```
 
- 2. Include the library
-
-    ```
-    require_once(__DIR__.'/libs/PhpRouter/Router.php');
-    ```
-
- 3. Create a new `Router` instance
+ 1. Create a new `Router` instance
 
     * for the web root
 
@@ -44,7 +55,7 @@ Router for PHP. Simple, lightweight and convenient.
       $router = new \Delight\Router\Router('/my/base/path');
       ```
 
- 4. Add some routes and map them to callback functions
+ 1. Add some routes and map them to callback functions
 
     * static route
 
