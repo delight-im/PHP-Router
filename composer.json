@@ -7,7 +7,7 @@
 	"type": "library",
 	"keywords": [ "router", "routing", "route", "http" ],
 	"homepage": "https://github.com/delight-im/PHP-Router",
-	"license": "Apache-2.0",
+	"license": "MIT",
 	"autoload": {
 		"psr-4": {
 			"Delight\\Router\\": "src/"
