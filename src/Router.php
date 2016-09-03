@@ -222,14 +222,13 @@ final class Router {
 			if ($matchedArgs !== null) {
 				// if a callback has been set
 				if (isset($callback) && is_callable($callback)) {
-					// if additional arguments to be injected have been pre-defined
-					if (!empty($injectArgs) && is_array($injectArgs)) {
-						// prepend these arguments
-						$matchedArgs = array_merge($injectArgs, $matchedArgs);
+					// use an empty array as the default value for the arguments to be injected
+					if ($injectArgs === null) {
+						$injectArgs = [];
 					}
 
 					// execute the callback
-					call_user_func_array($callback, $matchedArgs);
+					$callback(...$injectArgs, ...array_values($matchedArgs));
 				}
 
 				// the route matches the current request
