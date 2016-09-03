@@ -45,13 +45,13 @@ Router for PHP. Simple, lightweight and convenient.
 
     * for the web root
 
-      ```
+      ```php
       $router = new \Delight\Router\Router();
       ```
 
     * for any subdirectory
 
-      ```
+      ```php
       $router = new \Delight\Router\Router('/my/base/path');
       ```
 
@@ -59,7 +59,7 @@ Router for PHP. Simple, lightweight and convenient.
 
     * static route
 
-      ```
+      ```php
       $router->get('/', function () {
           // do something
       });
@@ -67,7 +67,7 @@ Router for PHP. Simple, lightweight and convenient.
 
     * route with dynamic parameters
 
-      ```
+      ```php
       $router->get('/users/:id/photo', function ($id) {
           // get the photo for user `$id`
       });
