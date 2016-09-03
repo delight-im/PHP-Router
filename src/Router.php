@@ -189,16 +189,16 @@ final class Router {
 		}
 		// if the route regex does not match the current request path
 		else {
-			return false;
+			return null;
 		}
 	}
 
-	private function addRoute($expectedRequestMethod, $expectedRoute, $callback, $injectArgs = null) {
+	private function addRoute($expectedRequestMethod, $expectedRoute, $callback = null, $injectArgs = null) {
 		if ($expectedRequestMethod === $this->requestMethod) {
 			$matchedArgs = $this->matchRoute($expectedRoute);
 
 			// if the route matches the current request
-			if ($matchedArgs !== false) {
+			if ($matchedArgs !== null) {
 				// if a callback has been set
 				if (isset($callback) && is_callable($callback)) {
 					// if additional arguments to be injected have been pre-defined
