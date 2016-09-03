@@ -62,7 +62,7 @@ Router for PHP. Simple, lightweight and convenient.
       ```
       $router->get('/', function () {
           // do something
-      }
+      });
       ```
 
     * route with dynamic parameters
@@ -70,7 +70,7 @@ Router for PHP. Simple, lightweight and convenient.
       ```
       $router->get('/users/:id/photo', function ($id) {
           // get the photo for user `$id`
-      }
+      });
       ```
 
       The values of parameters matched in the URL can be captured as arguments in the callback.
