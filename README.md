@@ -89,6 +89,28 @@ Router for PHP. Simple, lightweight and convenient.
     $router->get('/photos/:id/convert/:mode', array($myPhotoController, 'myInstanceMethod'));
     ```
 
+ 1. Inject arguments for access to further values and objects (prepended to those matched in the route)
+
+    ```php
+    class MyController {
+
+        public static function someStaticMethod($database, $uuid) {
+            // do something
+        }
+
+    }
+    ```
+
+    and
+
+    ```php
+    $database = new MyDatabase();
+
+    // ...
+
+    $router->delete('/messages/:uuid', 'MyController::someStaticMethod', array($database));
+    ```
+
 ## Contributing
 
 All contributions are welcome! If you wish to contribute, please create an issue first so that your feature, problem or question can be discussed.

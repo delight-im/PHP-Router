@@ -38,10 +38,11 @@ final class Router {
 	 *
 	 * @param string $route the route to match, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
-	public function get($route, $callback = null) {
-		return $this->addRoute('get', $route, $callback);
+	public function get($route, $callback = null, $injectArgs = null) {
+		return $this->addRoute('get', $route, $callback, $injectArgs);
 	}
 
 	/**
@@ -49,10 +50,11 @@ final class Router {
 	 *
 	 * @param string $route the route to match, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
-	public function post($route, $callback = null) {
-		return $this->addRoute('post', $route, $callback);
+	public function post($route, $callback = null, $injectArgs = null) {
+		return $this->addRoute('post', $route, $callback, $injectArgs);
 	}
 
 	/**
@@ -60,10 +62,11 @@ final class Router {
 	 *
 	 * @param string $route the route to match, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
-	public function put($route, $callback = null) {
-		return $this->addRoute('put', $route, $callback);
+	public function put($route, $callback = null, $injectArgs = null) {
+		return $this->addRoute('put', $route, $callback, $injectArgs);
 	}
 
 	/**
@@ -71,10 +74,11 @@ final class Router {
 	 *
 	 * @param string $route the route to match, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
-	public function patch($route, $callback = null) {
-		return $this->addRoute('patch', $route, $callback);
+	public function patch($route, $callback = null, $injectArgs = null) {
+		return $this->addRoute('patch', $route, $callback, $injectArgs);
 	}
 
 	/**
@@ -82,10 +86,11 @@ final class Router {
 	 *
 	 * @param string $route the route to match, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
-	public function delete($route, $callback = null) {
-		return $this->addRoute('delete', $route, $callback);
+	public function delete($route, $callback = null, $injectArgs = null) {
+		return $this->addRoute('delete', $route, $callback, $injectArgs);
 	}
 
 	/**
@@ -93,10 +98,11 @@ final class Router {
 	 *
 	 * @param string $route the route to match, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
-	public function head($route, $callback = null) {
-		return $this->addRoute('head', $route, $callback);
+	public function head($route, $callback = null, $injectArgs = null) {
+		return $this->addRoute('head', $route, $callback, $injectArgs);
 	}
 
 	/**
@@ -104,10 +110,11 @@ final class Router {
 	 *
 	 * @param string $route the route to match, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
-	public function trace($route, $callback = null) {
-		return $this->addRoute('trace', $route, $callback);
+	public function trace($route, $callback = null, $injectArgs = null) {
+		return $this->addRoute('trace', $route, $callback, $injectArgs);
 	}
 
 	/**
@@ -115,10 +122,11 @@ final class Router {
 	 *
 	 * @param string $route the route to match, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
-	public function options($route, $callback = null) {
-		return $this->addRoute('options', $route, $callback);
+	public function options($route, $callback = null, $injectArgs = null) {
+		return $this->addRoute('options', $route, $callback, $injectArgs);
 	}
 
 	/**
@@ -126,10 +134,11 @@ final class Router {
 	 *
 	 * @param string $route the route to match, e.g. `/users/jane`
 	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
-	public function connect($route, $callback = null) {
-		return $this->addRoute('connect', $route, $callback);
+	public function connect($route, $callback = null, $injectArgs = null) {
+		return $this->addRoute('connect', $route, $callback, $injectArgs);
 	}
 
 	/**
@@ -184,7 +193,7 @@ final class Router {
 		}
 	}
 
-	private function addRoute($expectedRequestMethod, $expectedRoute, $callback) {
+	private function addRoute($expectedRequestMethod, $expectedRoute, $callback, $injectArgs = null) {
 		if ($expectedRequestMethod === $this->requestMethod) {
 			$matchedArgs = $this->matchRoute($expectedRoute);
 
@@ -192,6 +201,12 @@ final class Router {
 			if ($matchedArgs !== false) {
 				// if a callback has been set
 				if (isset($callback) && is_callable($callback)) {
+					// if additional arguments to be injected have been pre-defined
+					if (!empty($injectArgs) && is_array($injectArgs)) {
+						// prepend these arguments
+						$matchedArgs = array_merge($injectArgs, $matchedArgs);
+					}
+
 					// execute the callback
 					call_user_func_array($callback, $matchedArgs);
 				}
