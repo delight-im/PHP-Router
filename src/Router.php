@@ -14,12 +14,18 @@ require __DIR__.'/Uri.php';
 /** Router for PHP. Simple, lightweight and convenient. */
 final class Router {
 
+	/** Regular expression used to find named parameters in routes */
 	const REGEX_PATH_PARAMS = '/(?<=\/):([^\/]+)(?=\/|$)/';
+	/** Regular expression used to match a single segment of a path */
 	const REGEX_PATH_SEGMENT = '([^\/]+)';
+	/** Delimiter used in regular expressions */
 	const REGEX_DELIMITER = '/';
 
+	/** @var string the root path that this instance is working under */
 	private $rootPath;
+	/** @var string the route of the current request */
 	private $route;
+	/** @var string the request method of the current request */
 	private $requestMethod;
 
 	/**
@@ -37,7 +43,7 @@ final class Router {
 	 * Adds a new route for the HTTP request method `GET` and executes the specified callback if the route matches
 	 *
 	 * @param string $route the route to match, e.g. `/users/jane`
-	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @param callable|null $callback (optional) the callback to execute, e.g. an anonymous function
 	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
@@ -49,7 +55,7 @@ final class Router {
 	 * Adds a new route for the HTTP request method `POST` and executes the specified callback if the route matches
 	 *
 	 * @param string $route the route to match, e.g. `/users/jane`
-	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @param callable|null $callback (optional) the callback to execute, e.g. an anonymous function
 	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
@@ -61,7 +67,7 @@ final class Router {
 	 * Adds a new route for the HTTP request method `PUT` and executes the specified callback if the route matches
 	 *
 	 * @param string $route the route to match, e.g. `/users/jane`
-	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @param callable|null $callback (optional) the callback to execute, e.g. an anonymous function
 	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
@@ -73,7 +79,7 @@ final class Router {
 	 * Adds a new route for the HTTP request method `PATCH` and executes the specified callback if the route matches
 	 *
 	 * @param string $route the route to match, e.g. `/users/jane`
-	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @param callable|null $callback (optional) the callback to execute, e.g. an anonymous function
 	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
@@ -85,7 +91,7 @@ final class Router {
 	 * Adds a new route for the HTTP request method `DELETE` and executes the specified callback if the route matches
 	 *
 	 * @param string $route the route to match, e.g. `/users/jane`
-	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @param callable|null $callback (optional) the callback to execute, e.g. an anonymous function
 	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
@@ -97,7 +103,7 @@ final class Router {
 	 * Adds a new route for the HTTP request method `HEAD` and executes the specified callback if the route matches
 	 *
 	 * @param string $route the route to match, e.g. `/users/jane`
-	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @param callable|null $callback (optional) the callback to execute, e.g. an anonymous function
 	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
@@ -109,7 +115,7 @@ final class Router {
 	 * Adds a new route for the HTTP request method `TRACE` and executes the specified callback if the route matches
 	 *
 	 * @param string $route the route to match, e.g. `/users/jane`
-	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @param callable|null $callback (optional) the callback to execute, e.g. an anonymous function
 	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
@@ -121,7 +127,7 @@ final class Router {
 	 * Adds a new route for the HTTP request method `OPTIONS` and executes the specified callback if the route matches
 	 *
 	 * @param string $route the route to match, e.g. `/users/jane`
-	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @param callable|null $callback (optional) the callback to execute, e.g. an anonymous function
 	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
@@ -133,7 +139,7 @@ final class Router {
 	 * Adds a new route for the HTTP request method `CONNECT` and executes the specified callback if the route matches
 	 *
 	 * @param string $route the route to match, e.g. `/users/jane`
-	 * @param callable|null $callback the callback to execute, e.g. an anonymous function
+	 * @param callable|null $callback (optional) the callback to execute, e.g. an anonymous function
 	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
@@ -142,7 +148,7 @@ final class Router {
 	}
 
 	/**
-	 * Returns the root path that this router is working in
+	 * Returns the root path that this instance is working under
 	 *
 	 * @return string the path
 	 */
@@ -151,7 +157,7 @@ final class Router {
 	}
 
 	/**
-	 * Returns the route from the current request
+	 * Returns the route of the current request
 	 *
 	 * @return string the route
 	 */
@@ -160,7 +166,7 @@ final class Router {
 	}
 
 	/**
-	 * Returns the request method from the current request
+	 * Returns the request method of the current request
 	 *
 	 * @return string the method name
 	 */
@@ -168,6 +174,12 @@ final class Router {
 		return $this->requestMethod;
 	}
 
+	/**
+	 * Attempts to match the route of the current request against the specified route
+	 *
+	 * @param string $expectedRoute the route to match against
+	 * @return array|null the list of matched parameters or `null` if the route didn't match
+	 */
 	private function matchRoute($expectedRoute) {
 		$params = array();
 
@@ -193,6 +205,15 @@ final class Router {
 		}
 	}
 
+	/**
+	 * Checks the specified route against the current request to see if it matches
+	 *
+	 * @param string $expectedRequestMethod the request method that must be found in order to have a match
+	 * @param string $expectedRoute the route that must be found in order to have a match
+	 * @param callable|null $callback (optional) the callback to execute, e.g. an anonymous function
+	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
+	 * @return bool whether the route matched the current request
+	 */
 	private function addRoute($expectedRequestMethod, $expectedRoute, $callback = null, $injectArgs = null) {
 		if ($expectedRequestMethod === $this->requestMethod) {
 			$matchedArgs = $this->matchRoute($expectedRoute);
@@ -220,6 +241,13 @@ final class Router {
 		return false;
 	}
 
+	/**
+	 * Creates a regular expression that can be used to match the specified route
+	 *
+	 * @param string $expectedRoute the route to create a regular expression for
+	 * @param array $params the array that should receive the matched parameters
+	 * @return string the composed regular expression
+	 */
 	private function createRouteRegex($expectedRoute, &$params) {
 		// extract the parameters from the route (if any) and make the route a regex
 		self::processUriParams($expectedRoute, $params);
@@ -228,6 +256,12 @@ final class Router {
 		return static::REGEX_DELIMITER . '^' . static::regexEscape($this->rootPath) . $expectedRoute . '$' . static::REGEX_DELIMITER;
 	}
 
+	/**
+	 * Extracts parameters from a path
+	 *
+	 * @param string $path the path to extract the parameters from
+	 * @param array $params the array that should receive the matched parameters
+	 */
 	private static function processUriParams(&$path, &$params) {
 		// if the route path contains parameters like `:key`
 		if (preg_match_all(static::REGEX_PATH_PARAMS, $path, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE)) {
@@ -266,6 +300,12 @@ final class Router {
 		}
 	}
 
+	/**
+	 * Escapes the supplied string for use in a regular expression
+	 *
+	 * @param string $str the string to escape
+	 * @return string the escaped string
+	 */
 	private static function regexEscape($str) {
 		return preg_quote($str, static::REGEX_DELIMITER);
 	}
