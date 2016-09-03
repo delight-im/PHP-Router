@@ -181,7 +181,7 @@ final class Router {
 	 * @return array|null the list of matched parameters or `null` if the route didn't match
 	 */
 	private function matchRoute($expectedRoute) {
-		$params = array();
+		$params = [];
 
 		// create the regex that matches paths against the route
 		$expectedRouteRegex = $this->createRouteRegex($expectedRoute, $params);
@@ -196,7 +196,7 @@ final class Router {
 				return array_combine($params, $matches);
 			}
 			else {
-				return array();
+				return [];
 			}
 		}
 		// if the route regex does not match the current request path
@@ -266,7 +266,7 @@ final class Router {
 		// if the route path contains parameters like `:key`
 		if (preg_match_all(static::REGEX_PATH_PARAMS, $path, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE)) {
 			$previousMatchEnd = 0;
-			$regexParts = array();
+			$regexParts = [];
 
 			// extract all parameter names and create a regex that matches URIs and captures the parameters' values
 			foreach ($matches as $match) {

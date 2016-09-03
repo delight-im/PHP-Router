@@ -81,12 +81,12 @@ Router for PHP. Simple, lightweight and convenient.
     // use static methods
     $router->get('/photos/:id/convert/:mode', 'PhotoController::myStaticMethod');
     // or
-    // $router->get('/photos/:id/convert/:mode', array('PhotoController', 'myStaticMethod'));
+    // $router->get('/photos/:id/convert/:mode', [ 'PhotoController', 'myStaticMethod' ]);
 
     // or
 
     // instance methods
-    $router->get('/photos/:id/convert/:mode', array($myPhotoController, 'myInstanceMethod'));
+    $router->get('/photos/:id/convert/:mode', [ $myPhotoController, 'myInstanceMethod' ]);
     ```
 
  1. Inject arguments for access to further values and objects (prepended to those matched in the route)
@@ -108,7 +108,7 @@ Router for PHP. Simple, lightweight and convenient.
 
     // ...
 
-    $router->delete('/messages/:uuid', 'MyController::someStaticMethod', array($database));
+    $router->delete('/messages/:uuid', 'MyController::someStaticMethod', [ $database ]);
     ```
 
 ## Contributing
