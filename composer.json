@@ -2,7 +2,7 @@
 	"name": "delight-im/router",
 	"description": "Router for PHP. Simple, lightweight and convenient.",
 	"require": {
-		"php": ">=5.3.0"
+		"php": ">=5.6.0"
 	},
 	"type": "library",
 	"keywords": [ "router", "routing", "route", "http" ],
