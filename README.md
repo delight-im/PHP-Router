@@ -55,7 +55,7 @@ Router for PHP. Simple, lightweight and convenient.
       $router = new \Delight\Router\Router('/my/base/path');
       ```
 
- 1. Add some routes and map them to callback functions
+ 1. Add some routes and map them to anonymous functions or closures
 
     * static route
 
@@ -74,6 +74,20 @@ Router for PHP. Simple, lightweight and convenient.
       ```
 
       The values of parameters matched in the URL can be captured as arguments in the callback.
+
+ 1. Map routes to controller methods instead for more complex callbacks
+
+    ```php
+    // use static methods
+    $router->get('/photos/:id/convert/:mode', 'PhotoController::myStaticMethod');
+    // or
+    // $router->get('/photos/:id/convert/:mode', array('PhotoController', 'myStaticMethod'));
+
+    // or
+
+    // instance methods
+    $router->get('/photos/:id/convert/:mode', array($myPhotoController, 'myInstanceMethod'));
+    ```
 
 ## Contributing
 
