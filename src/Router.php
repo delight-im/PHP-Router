@@ -221,14 +221,21 @@ final class Router {
 			// if the route matches the current request
 			if ($matchedArgs !== null) {
 				// if a callback has been set
-				if (isset($callback) && is_callable($callback)) {
-					// use an empty array as the default value for the arguments to be injected
-					if ($injectArgs === null) {
-						$injectArgs = [];
-					}
+				if (isset($callback)) {
+					// if the callback can be executed
+					if (is_callable($callback)) {
+						// use an empty array as the default value for the arguments to be injected
+						if ($injectArgs === null) {
+							$injectArgs = [];
+						}
 
-					// execute the callback
-					$callback(...$injectArgs, ...array_values($matchedArgs));
+						// execute the callback
+						$callback(...$injectArgs, ...array_values($matchedArgs));
+					}
+					// if the callback is invalid
+					else {
+						throw new \InvalidArgumentException('Invalid callback for method `'.$expectedRequestMethod.'` at route `'.$expectedRoute.'`');
+					}
 				}
 
 				// the route matches the current request
