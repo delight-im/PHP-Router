@@ -57,7 +57,7 @@ Router for PHP. Simple, lightweight and convenient.
 
  1. Add some routes and map them to anonymous functions or closures
 
-    * static route
+    * Static route:
 
       ```php
       $router->get('/', function () {
@@ -65,7 +65,7 @@ Router for PHP. Simple, lightweight and convenient.
       });
       ```
 
-    * route with dynamic parameters
+    * Dynamic route (with parameters):
 
       ```php
       $router->get('/users/:id/photo', function ($id) {
