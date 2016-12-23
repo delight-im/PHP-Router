@@ -75,6 +75,14 @@ Router for PHP. Simple, lightweight and convenient.
 
       The values of parameters matched in the URL can be captured as arguments in the callback.
 
+    * Route with multiple supported request methods:
+
+      ```php
+      $router->any([ 'POST', 'PUT' ], '/users/:id/address', function ($id) {
+          // update the address for user `$id`
+      });
+      ```
+
  1. Map routes to controller methods instead for more complex callbacks
 
     ```php

@@ -148,6 +148,19 @@ final class Router {
 	}
 
 	/**
+	 * Adds a new route for all of the specified HTTP request methods and executes the specified callback if the route matches
+	 *
+	 * @param string[] $requestMethods the request methods, one of which to match
+	 * @param string $route the route to match, e.g. `/users/jane`
+	 * @param callable|null $callback (optional) the callback to execute, e.g. an anonymous function
+	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
+	 * @return bool whether the route matched the current request
+	 */
+	public function any(array $requestMethods, $route, $callback = null, $injectArgs = null) {
+		return $this->addRoute($requestMethods, $route, $callback, $injectArgs);
+	}
+
+	/**
 	 * Returns the root path that this instance is working under
 	 *
 	 * @return string the path
