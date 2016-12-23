@@ -206,7 +206,7 @@ final class Router {
 	}
 
 	/**
-	 * Checks the specified route against the current request to see if it matches
+	 * Checks the specified request method and route against the current request to see whether it matches
 	 *
 	 * @param string $expectedRequestMethod the request method that must be found in order to have a match
 	 * @param string $expectedRoute the route that must be found in order to have a match
