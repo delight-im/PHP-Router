@@ -48,7 +48,7 @@ final class Router {
 	 * @return bool whether the route matched the current request
 	 */
 	public function get($route, $callback = null, $injectArgs = null) {
-		return $this->addRoute('get', $route, $callback, $injectArgs);
+		return $this->addRoute([ 'get' ], $route, $callback, $injectArgs);
 	}
 
 	/**
@@ -60,7 +60,7 @@ final class Router {
 	 * @return bool whether the route matched the current request
 	 */
 	public function post($route, $callback = null, $injectArgs = null) {
-		return $this->addRoute('post', $route, $callback, $injectArgs);
+		return $this->addRoute([ 'post' ], $route, $callback, $injectArgs);
 	}
 
 	/**
@@ -72,7 +72,7 @@ final class Router {
 	 * @return bool whether the route matched the current request
 	 */
 	public function put($route, $callback = null, $injectArgs = null) {
-		return $this->addRoute('put', $route, $callback, $injectArgs);
+		return $this->addRoute([ 'put' ], $route, $callback, $injectArgs);
 	}
 
 	/**
@@ -84,7 +84,7 @@ final class Router {
 	 * @return bool whether the route matched the current request
 	 */
 	public function patch($route, $callback = null, $injectArgs = null) {
-		return $this->addRoute('patch', $route, $callback, $injectArgs);
+		return $this->addRoute([ 'patch' ], $route, $callback, $injectArgs);
 	}
 
 	/**
@@ -96,7 +96,7 @@ final class Router {
 	 * @return bool whether the route matched the current request
 	 */
 	public function delete($route, $callback = null, $injectArgs = null) {
-		return $this->addRoute('delete', $route, $callback, $injectArgs);
+		return $this->addRoute([ 'delete' ], $route, $callback, $injectArgs);
 	}
 
 	/**
@@ -108,7 +108,7 @@ final class Router {
 	 * @return bool whether the route matched the current request
 	 */
 	public function head($route, $callback = null, $injectArgs = null) {
-		return $this->addRoute('head', $route, $callback, $injectArgs);
+		return $this->addRoute([ 'head' ], $route, $callback, $injectArgs);
 	}
 
 	/**
@@ -120,7 +120,7 @@ final class Router {
 	 * @return bool whether the route matched the current request
 	 */
 	public function trace($route, $callback = null, $injectArgs = null) {
-		return $this->addRoute('trace', $route, $callback, $injectArgs);
+		return $this->addRoute([ 'trace' ], $route, $callback, $injectArgs);
 	}
 
 	/**
@@ -132,7 +132,7 @@ final class Router {
 	 * @return bool whether the route matched the current request
 	 */
 	public function options($route, $callback = null, $injectArgs = null) {
-		return $this->addRoute('options', $route, $callback, $injectArgs);
+		return $this->addRoute([ 'options' ], $route, $callback, $injectArgs);
 	}
 
 	/**
@@ -144,7 +144,7 @@ final class Router {
 	 * @return bool whether the route matched the current request
 	 */
 	public function connect($route, $callback = null, $injectArgs = null) {
-		return $this->addRoute('connect', $route, $callback, $injectArgs);
+		return $this->addRoute([ 'connect' ], $route, $callback, $injectArgs);
 	}
 
 	/**
@@ -208,14 +208,16 @@ final class Router {
 	/**
 	 * Checks the specified request method and route against the current request to see whether it matches
 	 *
-	 * @param string $expectedRequestMethod the request method that must be found in order to have a match
+	 * @param string[] $expectedRequestMethods the request methods, one of which must be detected in order to have a match
 	 * @param string $expectedRoute the route that must be found in order to have a match
 	 * @param callable|null $callback (optional) the callback to execute, e.g. an anonymous function
 	 * @param array|null $injectArgs (optional) any arguments that should be prepended to those matched in the route
 	 * @return bool whether the route matched the current request
 	 */
-	private function addRoute($expectedRequestMethod, $expectedRoute, $callback = null, $injectArgs = null) {
-		if ($expectedRequestMethod === $this->requestMethod) {
+	private function addRoute(array $expectedRequestMethods, $expectedRoute, $callback = null, $injectArgs = null) {
+		$expectedRequestMethods = array_map('strtolower', $expectedRequestMethods);
+
+		if (in_array($this->requestMethod, $expectedRequestMethods, true)) {
 			$matchedArgs = $this->matchRoute($expectedRoute);
 
 			// if the route matches the current request
@@ -234,7 +236,7 @@ final class Router {
 					}
 					// if the callback is invalid
 					else {
-						throw new \InvalidArgumentException('Invalid callback for method `'.$expectedRequestMethod.'` at route `'.$expectedRoute.'`');
+						throw new \InvalidArgumentException('Invalid callback for methods `'.implode('|', $expectedRequestMethods).'` at route `'.$expectedRoute.'`');
 					}
 				}
 
