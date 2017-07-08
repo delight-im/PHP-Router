@@ -8,20 +8,17 @@ Router for PHP. Simple, lightweight and convenient.
 
 ## Installation
 
- * Install via [Composer](https://getcomposer.org/) (recommended)
+ 1. Include the library via Composer [[?]](https://github.com/delight-im/Knowledge/blob/master/Composer%20(PHP).md):
 
-   `$ composer require delight-im/router`
+    ```
+    $ composer require delight-im/router
+    ```
 
-   Include the Composer autoloader:
+ 1. Include the Composer autoloader:
 
-   `require __DIR__.'/vendor/autoload.php';`
-
- * or
-
- * Install manually
-
-   * Copy the contents of the [`src`](src) directory to a subfolder of your project
-   * Include the files in your code via `require` or `require_once`
+    ```php
+    require __DIR__ . '/vendor/autoload.php';
+    ```
 
 ## Usage
 
