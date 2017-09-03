@@ -35,7 +35,7 @@ final class Router {
 	 */
 	public function __construct($rootPath = '') {
 		$this->rootPath = (string) (new Path($rootPath))->normalize()->removeTrailingSlashes();
-		$this->route = urldecode((string) (new Uri($_SERVER['REQUEST_URI']))->removeQuery());
+		$this->route = urldecode((new Uri($_SERVER['REQUEST_URI']))->removeQuery());
 		$this->requestMethod = strtolower($_SERVER['REQUEST_METHOD']);
 	}
 
