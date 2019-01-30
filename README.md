@@ -84,9 +84,7 @@ Router for PHP. Simple, lightweight and convenient.
 
     ```php
     // use static methods
-    $router->get('/photos/:id/convert/:mode', 'PhotoController::myStaticMethod');
-    // or
-    // $router->get('/photos/:id/convert/:mode', [ 'PhotoController', 'myStaticMethod' ]);
+    $router->get('/photos/:id/convert/:mode', [ 'PhotoController', 'myStaticMethod' ]);
 
     // or
 
@@ -113,7 +111,7 @@ Router for PHP. Simple, lightweight and convenient.
 
     // ...
 
-    $router->delete('/messages/:uuid', 'MyController::someStaticMethod', [ $database ]);
+    $router->delete('/messages/:uuid', [ 'MyController', 'someStaticMethod' ], [ $database ]);
     ```
 
 ## Contributing
