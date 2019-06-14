@@ -43,7 +43,12 @@ final class Router {
 			$this->route = $this->rootPath . '/';
 		}
 
-		$this->requestMethod = strtolower($_SERVER['REQUEST_METHOD']);
+		if (isset($_SERVER['REQUEST_METHOD'])) {
+			$this->requestMethod = strtolower($_SERVER['REQUEST_METHOD']);
+		}
+		else {
+			$this->requestMethod = 'get';
+		}
 	}
 
 	/**
